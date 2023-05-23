@@ -218,7 +218,7 @@
             Console.WriteLine("'----------------'  '----------------'  '----------------'  '----------------'  '----------------'");
             Console.WriteLine("   hp = 500            hp = 375            hp = 825            hp = 475            hp = 625");
             Console.WriteLine("   atsp = 50           atsp = 100          atsp = 0            atsp = 75           atsp = 80");
-            Console.WriteLine("   def = 20            def = 20            def = 5             def = 10            def = 15");
+            Console.WriteLine("   def = 20            def = 20            def = 5             def = 15            def = 15");
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine(" Napishi chislo ot 1 do 5 za da izberesh klasa si");
@@ -263,7 +263,7 @@
                     CharacterClass = "Lumberjack";
                     hp = 475;
                     atsp = 75;
-                    def = 10;
+                    def = 15;
                     break;
                 }
                 else if (chislozaizbiranenaklas == "5")
@@ -529,8 +529,10 @@
         {
             if (gora == true)
             {
+
                 if (wolveatsp < atsp)
                 {
+
                     bool proverkaJivot = false;
                     //weat1st
                     while (currenthp >= 0 && wolvehp >= 0)
@@ -1869,23 +1871,23 @@
         //axe
         static void Axe1(ref int dmg)
         {
-            dmg = 70;
+            dmg = 75;
         }
         static void Axe2(ref int dmg)
         {
-            dmg = 75;
+            dmg = 80;
         }
         static void Axe3(ref int dmg)
         {
-            dmg = 80;
+            dmg = 85;
         }
         static void Axe4(ref int dmg)
         {
-            dmg = 85;
+            dmg = 90;
         }
         static void Axe5(ref int dmg)
         {
-            dmg = 95;
+            dmg = 100;
         }
 
 
@@ -1917,6 +1919,7 @@
         {
 
         }
+
 
 
     }
@@ -1965,6 +1968,24 @@ Console.WriteLine($"Tvoite statove sa:");
             Console.WriteLine($"HIT POINTS: {hp}");
             Console.WriteLine($"ATTACK SPEED: {atsp} ");
             Console.WriteLine($"DEFENSE: {def}");
+
+                              .
+                              ))
+        )\\                  //
+       _``\`,- '''' ''- ,,,/ /
+  .---'a> , < ,<' << ,<, ' / \
+  `v^w   ' , << ,< ' <  <  / \
+   ````--' \  ,,,---''/ <' //
+            !! ;;    ( '  / \
+       fL   !!</       \ `\ /
+          <</          / /</
+                      <</
+
+
+http://www.heartnsoul.com/ascii_art/swords.txt
+
+
+
  
  
 sled vseki fight
