@@ -1,5 +1,5 @@
-# TheCurseOfDamarel
-C# Console project /(adventure type game)
+# The Curse Of Damarel
+C# Console project / Adventure type game
 
 At the start you choose one of the main genders:
 - Male
