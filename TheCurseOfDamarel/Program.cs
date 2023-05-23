@@ -106,6 +106,21 @@
                 BlobGlob(blobglobhp, blobglobdmg, blobglobatsp, blobglobdef, ref currenthp, ref dmg, ref atsp, ref def,hp);
 
             }
+
+            Console.Clear();
+            Console.WriteLine(" _____ _                 _           __                    _             _             ");
+            Console.WriteLine("/__   \\ |__   __ _ _ __ | | _____   / _| ___  _ __   _ __ | | __ _ _   _(_)_ __   __ _ ");
+            Console.WriteLine("  / /\\/ '_ \\ / _` | '_ \\| |/ / __| | |_ / _ \\| '__| | '_ \\| |/ _` | | | | | '_ \\ / _` |");
+            Console.WriteLine(" / /  | | | | (_| | | | |   <\\__ \\ |  _| (_) | |    | |_) | | (_| | |_| | | | | | (_| |");
+            Console.WriteLine(" \\/   |_| |_|\\__,_|_| |_|_|\\_\\___/ |_|  \\___/|_|    | .__/|_|\\__,_|\\__, |_|_| |_|\\__, |");
+            Console.WriteLine("                                                    |_|            |___/         |___/ ");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("Credits:            Made by:");
+            Console.WriteLine("             Kristiyan and Kristiyan ");
             /*
  
             //koda za pata na polqta
