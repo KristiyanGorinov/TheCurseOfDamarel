@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Downloads\\TheCurseOfDamarel\\TheCurseOfDamarel\\TheCurseOfDamarel.csproj": {}
+    "C:\\Users\\User\\Desktop\\New folder (4)\\TheCurseOfDamarel\\TheCurseOfDamarel\\TheCurseOfDamarel.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Downloads\\TheCurseOfDamarel\\TheCurseOfDamarel\\TheCurseOfDamarel.csproj": {
+    "C:\\Users\\User\\Desktop\\New folder (4)\\TheCurseOfDamarel\\TheCurseOfDamarel\\TheCurseOfDamarel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Downloads\\TheCurseOfDamarel\\TheCurseOfDamarel\\TheCurseOfDamarel.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\New folder (4)\\TheCurseOfDamarel\\TheCurseOfDamarel\\TheCurseOfDamarel.csproj",
         "projectName": "TheCurseOfDamarel",
-        "projectPath": "C:\\Users\\User\\Downloads\\TheCurseOfDamarel\\TheCurseOfDamarel\\TheCurseOfDamarel.csproj",
+        "projectPath": "C:\\Users\\User\\Desktop\\New folder (4)\\TheCurseOfDamarel\\TheCurseOfDamarel\\TheCurseOfDamarel.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Downloads\\TheCurseOfDamarel\\TheCurseOfDamarel\\obj\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\New folder (4)\\TheCurseOfDamarel\\TheCurseOfDamarel\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

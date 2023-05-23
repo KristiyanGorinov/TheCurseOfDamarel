@@ -43,6 +43,16 @@
             int earthgolemdmg = 45;
             int earthgolematsp = 0;
             int earthgolemdef = 5;
+            //Baubaustats
+            int baubauhp = 1000;
+            int baubaudmg = 60;
+            int baubaudatsp = 80;
+            int baubauddef = 0;
+            //BlobGlobstats
+            int blobglobhp = 1500;
+            int blobglobdmg = 45;
+            int blobglobatsp = 10;
+            int blobglobdef = 10;
 
 
             GameStart();
@@ -52,7 +62,7 @@
             Console.ReadKey();
             Console.Clear();
             ChooseClass(ref CharacterClass, ref hp, ref atsp, ref def);
-
+            int currenthp = hp;
 
             Console.ReadKey();
             Console.Clear();
@@ -83,9 +93,19 @@
                 Console.WriteLine("Press any button to start your adventure");
                 Console.ReadKey();
                 Console.Clear();
-                Forest(gora, polq, atsp, wolveatsp, ref hp, dmg, def, wolvedmg, wolvehp, wolvedef, slimehp, slimedef, slimeatsp, slimedmg, bearatsp, beardmg, bearhp, beardef, fungiatsp, fungidmg, fungihp, fungidef, grompatsp, grompdmg, gromphp, grompdef, earthgolematsp, earthgolemdmg, earthgolemdef, earthgolemhp);
+                Forest(gora, polq, ref atsp, wolveatsp, ref currenthp, ref dmg, ref def, wolvedmg, wolvehp, wolvedef, slimehp, slimedef, slimeatsp, slimedmg, bearatsp, beardmg, bearhp, beardef, fungiatsp, fungidmg, fungihp, fungidef, grompatsp, grompdmg, gromphp, grompdef, earthgolematsp, earthgolemdmg, earthgolemdef, earthgolemhp, hp);
             }
 
+
+            if (gora == true)
+            {
+                Baubau(baubauhp, baubaudmg, baubaudatsp, baubauddef, ref currenthp, ref dmg, ref atsp, ref def,hp);
+            }
+            else if (polq)
+            {
+                BlobGlob(blobglobhp, blobglobdmg, blobglobatsp, blobglobdef, ref currenthp, ref dmg, ref atsp, ref def,hp);
+
+            }
             /*
  
             //koda za pata na polqta
@@ -129,11 +149,9 @@
         static void CharacterSelect()
         {
             Console.WriteLine("Molq predi da zapochnete izberete pol natiskaiki {m} za male i {f} za female");
-            string pol;
             while (true)
             {
-                string promenlivakoqtonqmadapolzvameotnovo1 = Console.ReadLine();
-                pol = promenlivakoqtonqmadapolzvameotnovo1;
+                string pol = Console.ReadLine();
                 if (pol == "m")
                 {
                     Console.WriteLine("ti veche si muj");
@@ -198,9 +216,9 @@
             Console.WriteLine("| |              | || |              | || |              | || |              | || |              | |");
             Console.WriteLine("| '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |");
             Console.WriteLine("'----------------'  '----------------'  '----------------'  '----------------'  '----------------'");
-            Console.WriteLine("   hp = 500            hp = 375            hp = 875            hp = 475            hp = 625");
+            Console.WriteLine("   hp = 500            hp = 375            hp = 825            hp = 475            hp = 625");
             Console.WriteLine("   atsp = 50           atsp = 100          atsp = 0            atsp = 75           atsp = 80");
-            Console.WriteLine("   def = 20            def = 35            def = 5             def = 10            def = 15");
+            Console.WriteLine("   def = 20            def = 20            def = 5             def = 10            def = 15");
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine(" Napishi chislo ot 1 do 5 za da izberesh klasa si");
@@ -228,14 +246,14 @@
                     CharacterClass = "Archer";
                     hp = 375;
                     atsp = 100;
-                    def = 35;
+                    def = 20;
                     break;
 
                 }
                 else if (chislozaizbiranenaklas == "3")
                 {
                     CharacterClass = "Berserker";
-                    hp = 875;
+                    hp = 825;
                     atsp = 0;
                     def = 5;
                     break;
@@ -277,7 +295,7 @@
             Console.WriteLine("Press any key to open");
             Console.ReadKey();
             //common
-            if (rand.Next(0, 100) <= 65)
+            if (rand.Next(0, 100) <= 40)
             {
                 if (CharacterClass == "Swordsman")
                 {
@@ -307,7 +325,7 @@
 
             }
             //uncommon
-            else if (rand.Next(0, 100) <= 80)
+            else if (rand.Next(0, 100) <= 57)
             {
                 if (CharacterClass == "Swordsman")
                 {
@@ -337,7 +355,7 @@
                 }
             }
             //rare
-            else if (rand.Next(0, 100) <= 88)
+            else if (rand.Next(0, 100) <= 77)
             {
                 if (CharacterClass == "Swordsman")
                 {
@@ -366,7 +384,7 @@
                 }
             }
             //epic
-            else if (rand.Next(0, 100) <= 96)
+            else if (rand.Next(0, 100) <= 90)
             {
                 if (CharacterClass == "Swordsman")
                 {
@@ -459,19 +477,19 @@
 
         }
         //forest enemyta
-        static void Forest(bool gora, bool polq, int atsp, int wolveatsp, ref int hp, int dmg, int def, int wolvedmg, int wolvehp, int wolvedef, int slimehp, int slimedef, int slimeatsp, int slimedmg, int bearsatsp, int bearsdmg, int bearshp, int bearsdef, int fungiatsp, int fungidmg, int fungihp, int fungidef, int grompatsp, int grompdmg, int gromphp, int grompdef, int earthgolematsp, int earthgolemdmg, int earthgolemdef, int earthgolemhp)
+        static void Forest(bool gora, bool polq, ref int atsp, int wolveatsp, ref int currenthp, ref int dmg, ref int def, int wolvedmg, int wolvehp, int wolvedef, int slimehp, int slimedef, int slimeatsp, int slimedmg, int bearsatsp, int bearsdmg, int bearshp, int bearsdef, int fungiatsp, int fungidmg, int fungihp, int fungidef, int grompatsp, int grompdmg, int gromphp, int grompdef, int earthgolematsp, int earthgolemdmg, int earthgolemdef, int earthgolemhp, int hp)
         {
             Console.WriteLine("Ti vleze v gorata i beshe atakuvan ot glutnica vulci. Trqbva da se biesh za da se spasish");
             Console.WriteLine("Press any button to start the fight");
             Console.ReadKey();
             Console.Clear();
-            firstfight(gora, polq, wolveatsp, atsp, hp, def, dmg, wolvedmg, wolvehp, wolvedef, slimehp, slimedef, slimeatsp, slimedmg); //MAIKA TI PROSTA
+            firstfight(gora, polq, wolveatsp, ref atsp, ref currenthp, ref def, ref dmg, wolvedmg, wolvehp, wolvedef, slimehp, slimedef, slimeatsp, slimedmg,hp); //MAIKA TI PROSTA
             // random buff/nerf ili heal
             Console.Clear();
-            secondfight(gora, polq, bearsatsp, bearsdmg, bearshp, bearsdef, fungihp, fungidef, fungiatsp, fungidmg, atsp, dmg, hp, def);
+            secondfight(gora, polq, bearsatsp, bearsdmg, bearshp, bearsdef, fungihp, fungidef, fungiatsp, fungidmg, ref atsp, ref dmg, ref currenthp, ref def,hp);
             // random buff/nerf ili heal
             Console.Clear();
-            thirdfight(gora, polq, grompatsp, grompdmg, gromphp, grompdef, earthgolemhp, earthgolemdef, earthgolematsp, earthgolemdmg, atsp, dmg, hp, def);
+            thirdfight(gora, polq, grompatsp, grompdmg, gromphp, grompdef, earthgolemhp, earthgolemdef, earthgolematsp, earthgolemdmg, ref atsp, ref dmg, ref currenthp, ref def,hp);
             // random buff/nerf ili heal
             //consola clear
         }
@@ -507,21 +525,22 @@
 
         }
         //fights
-        static void firstfight(bool gora, bool polq, int wolveatsp, int atsp, int hp, int def, int dmg, int wolvedmg, int wolvehp, int wolvedef, int slimehp, int slimedef, int slimeatsp, int slimedmg)
+        static void firstfight(bool gora, bool polq, int wolveatsp, ref int atsp, ref int currenthp, ref int def, ref int dmg, int wolvedmg, int wolvehp, int wolvedef, int slimehp, int slimedef, int slimeatsp, int slimedmg, int hp)
         {
             if (gora == true)
             {
                 if (wolveatsp < atsp)
                 {
+                    bool proverkaJivot = false;
                     //weat1st
-                    while (hp > 0 && wolvehp > 0)
+                    while (currenthp >= 0 && wolvehp >= 0)
                     {
-                        bool proverkaJivot = false;
-                        wolvehp -= (dmg - wolvedef);
+                        
+                        wolvehp -= ((dmg - wolvedef));
                         if (wolvehp < 0)
                         {
                             wolvehp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - wolvedef} DMG");
                             Console.WriteLine($"wolve HP is now = {wolvehp}");
                             break;
@@ -532,28 +551,52 @@
                         Console.WriteLine();
                         // tuka slagame visual modelite
 
-                        hp -= (wolvedmg - def);
+                        currenthp -= (wolvedmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"The wolves slashed you and dealt {wolvedmg - def} DMG");
+                            Console.WriteLine($"Your HP is now = {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"The wolves slashed you and dealt {wolvedmg - def} DMG");
-                        Console.WriteLine($"Your HP is now = {hp}");
+                        Console.WriteLine($"Your HP is now = {currenthp}");
                         Console.ReadKey();
                         Console.Clear();
 
                     }
-                    Console.WriteLine("You defeated the wolves, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to continue along with your adventure");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the wolves, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to continue along with your adventure");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The wolves got you. Game over");
+                        Environment.Exit(0);
+                    }
                 }
                 else if (wolveatsp == atsp)
                 {
                     //te at purvi
-                    while (hp > 0 && wolvehp > 0)
+                    bool proverkaJivot = false;
+                    while (currenthp >= 0 && wolvehp >= 0)
                     {
-                        bool proverkaJivot = false;
-                        hp -= (wolvedmg - def);
-
+                        currenthp -= (wolvedmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"The wolves slashed you and dealt {wolvedmg - def} DMG");
+                            Console.WriteLine($"Your HP is now = {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"The wolves slashed you and dealt {wolvedmg - def} DMG");
-                        Console.WriteLine($"Your HP is now = {hp}");
+                        Console.WriteLine($"Your HP is now = {currenthp}");
                         Console.ReadKey();
                         Console.WriteLine();
                         //pak visualli
@@ -562,7 +605,7 @@
                         if (wolvehp < 0)
                         {
                             wolvehp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - wolvedef} DMG");
                             Console.WriteLine($"wolve HP is now = {wolvehp}");
                             break;
@@ -572,21 +615,38 @@
                         Console.ReadKey();
                         Console.Clear();
                     }
-                    Console.WriteLine("You defeated the wolves, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to continue along with your adventure");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the wolves, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to continue along with your adventure");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The wolves got you. Game over");
+                        Environment.Exit(0);
+                    }
 
                 }
                 else
                 {
                     //te at
-                    while (hp > 0 && wolvehp > 0)
+                    bool proverkaJivot = false;
+                    while (currenthp >= 0 && wolvehp >= 0)
                     {
-                        bool proverkaJivot = false;
-                        hp -= (wolvedmg - def);
+                        currenthp -= (wolvedmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"The wolves slashed you and dealt {wolvedmg - def} DMG");
+                            Console.WriteLine($"Your HP is now = {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"The wolves slashed you and dealt {wolvedmg - def} DMG");
-                        Console.WriteLine($"Your HP is now = {hp}");
+                        Console.WriteLine($"Your HP is now = {currenthp}");
                         Console.ReadKey();
                         Console.WriteLine();
                         //pak visualli
@@ -595,7 +655,7 @@
                         if (wolvehp < 0)
                         {
                             wolvehp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - wolvedef} DMG");
                             Console.WriteLine($"wolve HP is now = {wolvehp}");
                             break;
@@ -605,10 +665,19 @@
                         Console.ReadKey();
                         Console.Clear();
                     }
-                    Console.WriteLine("You defeated the wolves, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to continue along with your adventure");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the wolves, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to continue along with your adventure");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The wolves got you. Game over");
+                        Environment.Exit(0);
+                    }
                 }
             }
             else if (polq == true)
@@ -616,14 +685,14 @@
                 if (slimeatsp < atsp)
                 {
                     //weat1st
-                    while (hp > 0 && slimehp > 0)
+                    bool proverkaJivot = false;
+                    while (currenthp >= 0 && slimehp >= 0)
                     {
-                        bool proverkaJivot = false;
                         slimehp -= (dmg - slimedef);
                         if (slimehp < 0)
                         {
                             slimehp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - slimedef} DMG");
                             Console.WriteLine($"slime HP is now = {slimehp}");
                             break;
@@ -634,27 +703,52 @@
                         Console.WriteLine();
                         // tuka slagame visual modelite
 
-                        hp -= (slimedmg - def);
+                        currenthp -= (slimedmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"You got hit by a slime and took {slimedmg - def}  DMG");
+                            Console.WriteLine($"Your HP is : {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"You got hit by a slime and took {slimedmg - def}  DMG");
-                        Console.WriteLine($"Your HP is : {hp}");
+                        Console.WriteLine($"Your HP is : {currenthp}");
                         Console.ReadKey();
                         Console.Clear();
 
                     }
-                    Console.WriteLine("You defeated the slimes, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to continue along with your adventure");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the slime, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to continue along with your adventure");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The slime got you. Game over");
+                        Environment.Exit(0);
+                    }
                 }
                 else if (slimeatsp == atsp)
                 {
                     //te at purvi
-                    while (hp > 0 && slimehp > 0)
+                    bool proverkaJivot = false;
+                    while (currenthp >= 0 && slimehp >= 0)
                     {
-                        bool proverkaJivot = false;
-                        hp -= (slimedmg - def);
+                        currenthp -= (slimedmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"You got hit by a slime and took {slimedmg - def}  DMG");
+                            Console.WriteLine($"Your HP is : {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"You got hit by a slime and took {slimedmg - def} DMG");
-                        Console.WriteLine($"Your HP is= {hp}");
+                        Console.WriteLine($"Your HP is= {currenthp}");
                         Console.ReadKey();
                         Console.Clear();
                         // tuka slagame visual modelite
@@ -663,7 +757,7 @@
                         if (slimehp < 0)
                         {
                             slimehp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - slimedef} DMG");
                             Console.WriteLine($"slime HP is now = {slimehp}");
                             break;
@@ -673,20 +767,37 @@
                         Console.ReadKey();
                         Console.WriteLine();
                     }
-                    Console.WriteLine("You defeated the slimes, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to continue along with your adventure");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the slime, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to continue along with your adventure");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The slime got you. Game over");
+                        Environment.Exit(0);
+                    }
                 }
                 else
                 {
                     //te at
-                    while (hp > 0 && slimehp > 0)
+                    bool proverkaJivot = false;
+                    while (currenthp >= 0 && slimehp >= 0)
                     {
-                        bool proverkaJivot = false;
-                        hp -= (slimedmg - def);
+                        currenthp -= (slimedmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"You got hit by a slime and took {slimedmg - def}  DMG");
+                            Console.WriteLine($"Your HP is : {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"You got hit by a slime and took {slimedmg - def} DMG");
-                        Console.WriteLine($"Your HP is = {hp}");
+                        Console.WriteLine($"Your HP is = {currenthp}");
                         Console.ReadKey();
                         Console.Clear();
                         // tuka slagame visual modelite
@@ -695,7 +806,7 @@
                         if (slimehp < 0)
                         {
                             slimehp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - slimedef} DMG");
                             Console.WriteLine($"slime HP is now = {slimehp}");
                             break;
@@ -705,28 +816,37 @@
                         Console.ReadKey();
                         Console.WriteLine();
                     }
-                    Console.WriteLine("You defeated the slimes, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to continue along with your adventure");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the slime, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to continue along with your adventure");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The slime got you. Game over");
+                        Environment.Exit(0);
+                    }
                 }
             }
         }
-        static void secondfight(bool gora, bool polq, int bearsatsp, int bearsdmg, int bearshp, int bearsdef, int fungihp, int fungidef, int fungiatsp, int fungidmg, int atsp, int dmg, int hp, int def)
+        static void secondfight(bool gora, bool polq, int bearsatsp, int bearsdmg, int bearshp, int bearsdef, int fungihp, int fungidef, int fungiatsp, int fungidmg, ref int atsp, ref int dmg, ref int currenthp, ref int def, int hp)
         {
             if (gora == true)
             {
                 if (bearsatsp < atsp)
                 {
                     //weat1st
-                    while (hp > 0 && bearshp > 0)
+                    bool proverkaJivot = false;
+                    while (currenthp >= 0 && bearshp >= 0)
                     {
-                        bool proverkaJivot = false;
                         bearshp -= (dmg - bearsdef);
                         if (bearshp < 0)
                         {
                             bearshp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - bearsdef} DMG");
                             Console.WriteLine($"bear HP is now = {bearshp}");
                             break;
@@ -737,27 +857,52 @@
                         Console.WriteLine();
                         // tuka slagame visual modelite
 
-                        hp -= (bearsdmg - def);
+                        currenthp -= (bearsdmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"You got slashed by the bear and took {bearsdmg - def} DMG");
+                            Console.WriteLine($"Your HP is : {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"You got slashed by the bear and took {bearsdmg - def} DMG");
-                        Console.WriteLine($"Your HP is = {hp}");
+                        Console.WriteLine($"Your HP is = {currenthp}");
                         Console.ReadKey();
                         Console.Clear();
 
                     }
-                    Console.WriteLine("You defeated the bear, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to continue along with your adventure");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the bear, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to continue along with your adventure");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The bear got you. Game over");
+                        Environment.Exit(0);
+                    }
                 }
                 else if (bearsatsp == atsp)
                 {
                     //te at purvi
-                    while (hp > 0 && bearshp > 0)
+                    bool proverkaJivot = false;
+                    while (currenthp >=0 && bearshp >=0)
                     {
-                        bool proverkaJivot = false;
-                        hp -= (bearsdmg - def);
+                        currenthp -= (bearsdmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"You got slashed by the bear and took {bearsdmg - def} DMG");
+                            Console.WriteLine($"Your HP is : {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"You got slashed by the bear and took {bearsdmg - def} DMG");
-                        Console.WriteLine($"Your HP is = {hp}");
+                        Console.WriteLine($"Your HP is = {currenthp}");
                         Console.ReadKey();
                         Console.Clear();
                         // tuka slagame visual modelite
@@ -766,7 +911,7 @@
                         if (bearshp < 0)
                         {
                             bearshp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - bearsdef} DMG");
                             Console.WriteLine($"bear HP is now = {bearshp}");
                             break;
@@ -776,20 +921,37 @@
                         Console.ReadKey();
                         Console.WriteLine();
                     }
-                    Console.WriteLine("You defeated the bear, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to continue along with your adventure");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the bear, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to continue along with your adventure");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The bear got you. Game over");
+                        Environment.Exit(0);
+                    }
                 }
                 else
                 {
                     //te at
-                    while (hp > 0 && bearshp > 0)
+                    bool proverkaJivot = false;
+                    while (currenthp >= 0 && bearshp >= 0)
                     {
-                        bool proverkaJivot = false;
-                        hp -= (bearsdmg - def);
+                        currenthp -= (bearsdmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"You got slashed by the bear and took {bearsdmg - def} DMG");
+                            Console.WriteLine($"Your HP is : {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"You got slashed by the bear and took {bearsdmg - def} DMG");
-                        Console.WriteLine($"Your HP is = {hp}");
+                        Console.WriteLine($"Your HP is = {currenthp}");
                         Console.ReadKey();
                         Console.Clear();
                         // tuka slagame visual modelite
@@ -798,7 +960,7 @@
                         if (bearshp < 0)
                         {
                             bearshp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - bearsdef} DMG");
                             Console.WriteLine($"bear HP is now = {bearshp}");
                             break;
@@ -808,25 +970,34 @@
                         Console.ReadKey();
                         Console.WriteLine();
                     }
-                    Console.WriteLine("You defeated the bear, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to continue along with your adventure");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the bear, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to continue along with your adventure");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The bear got you. Game over");
+                        Environment.Exit(0);
+                    }
                 }
             }
             else if (polq == true)
             {
                 if (fungiatsp < atsp)
                 {
+                    bool proverkaJivot = false;
                     //weat1st
-                    while (hp > 0 && fungihp > 0)
+                    while (currenthp >= 0 && fungihp >= 0)
                     {
-                        bool proverkaJivot = false;
                         fungihp -= (dmg - fungidef);
                         if (fungihp < 0)
                         {
                             fungihp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - fungidef} DMG");
                             Console.WriteLine($"fungi HP is now = {fungihp}");
                             break;
@@ -837,27 +1008,52 @@
                         Console.WriteLine();
                         // tuka slagame visual modelite
 
-                        hp -= (fungidmg - def);
+                        currenthp -= (fungidmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"You got flushed by the fungi and took {fungidmg - def} DMG");
+                            Console.WriteLine($"Your HP is : {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"You got flushed by the fungi and took {fungidmg - def} DMG");
-                        Console.WriteLine($"Your HP is = {hp}");
+                        Console.WriteLine($"Your HP is = {currenthp}");
                         Console.ReadKey();
                         Console.Clear();
 
                     }
-                    Console.WriteLine("You defeated the fungi, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to continue along with your adventure");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the fungi, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to continue along with your adventure");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The fungi got you. Game over");
+                        Environment.Exit(0);
+                    }
                 }
                 else if (fungiatsp == atsp)
                 {
                     //te at purvi
-                    while (hp > 0 && fungihp > 0)
+                    bool proverkaJivot = false;
+                    while (currenthp >= 0 && fungihp >= 0)
                     {
-                        bool proverkaJivot = false;
-                        hp -= (fungidmg - def);
+                        currenthp -= (fungidmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"You got flushed by the fungi and took {fungidmg - def} DMG");
+                            Console.WriteLine($"Your HP is : {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"You got flushed by the fungi and took {fungidmg - def} DMG");
-                        Console.WriteLine($"Your HP is = {hp}");
+                        Console.WriteLine($"Your HP is = {currenthp}");
                         Console.ReadKey();
                         Console.Clear();
                         // tuka slagame visual modelite
@@ -866,7 +1062,7 @@
                         if (fungihp < 0)
                         {
                             fungihp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - fungidef} DMG");
                             Console.WriteLine($"fungi HP is now = {fungihp}");
                             break;
@@ -876,20 +1072,37 @@
                         Console.ReadKey();
                         Console.WriteLine();
                     }
-                    Console.WriteLine("You defeated the fungi, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to continue along with your adventure");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the fungi, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to continue along with your adventure");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The fungi got you. Game over");
+                        Environment.Exit(0);
+                    }
                 }
                 else
                 {
                     //te at
-                    while (hp > 0 && fungihp > 0)
+                    bool proverkaJivot = false;
+                    while (currenthp >= 0 && fungihp >= 0)
                     {
-                        bool proverkaJivot = false;
-                        hp -= (fungidmg - def);
+                        currenthp -= (fungidmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"You got flushed by the fungi and took {fungidmg - def} DMG");
+                            Console.WriteLine($"Your HP is : {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"You got flushed by the fungi and took {fungidmg - def} DMG");
-                        Console.WriteLine($"Your HP is = {hp}");
+                        Console.WriteLine($"Your HP is = {currenthp}");
                         Console.ReadKey();
                         Console.Clear();
                         // tuka slagame visual modelite
@@ -898,7 +1111,7 @@
                         if (fungihp < 0)
                         {
                             fungihp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - fungidef} DMG");
                             Console.WriteLine($"fungi HP is now = {fungihp}");
                             break;
@@ -908,28 +1121,37 @@
                         Console.ReadKey();
                         Console.WriteLine();
                     }
-                    Console.WriteLine("You defeated the fungi, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to continue along with your adventure");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the fungi, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to continue along with your adventure");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The fungi got you. Game over");
+                        Environment.Exit(0);
+                    }
                 }
             }
         }
-        static void thirdfight(bool gora, bool polq, int grompatsp, int grompdmg, int gromphp, int grompdef, int earthgolemhp, int earthgolemdef, int earthgolematsp, int earthgolemdmg, int atsp, int dmg, int hp, int def)
+        static void thirdfight(bool gora, bool polq, int grompatsp, int grompdmg, int gromphp, int grompdef, int earthgolemhp, int earthgolemdef, int earthgolematsp, int earthgolemdmg, ref int atsp, ref int dmg,ref int currenthp,ref int def, int hp)
         {
             if (gora == true)
             {
                 if (grompatsp < atsp)
                 {
                     //weat1st
-                    while (hp > 0 && gromphp > 0)
+                    bool proverkaJivot = false;
+                    while (currenthp >= 0 && gromphp >= 0)
                     {
-                        bool proverkaJivot = false;
                         gromphp -= (dmg - grompdef);
                         if (gromphp < 0)
                         {
                             gromphp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - grompdef} DMG");
                             Console.WriteLine($"gromp HP is now = {gromphp}");
                             break;
@@ -940,27 +1162,52 @@
                         Console.WriteLine();
                         // tuka slagame visual modelite
 
-                        hp -= (grompdmg - def);
+                        currenthp -= (grompdmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"You got spitted by the gromp and took {grompdmg - def} DMG");
+                            Console.WriteLine($"Your HP is : {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"You got spitted by the gromp and took {grompdmg - def} DMG");
-                        Console.WriteLine($"Your HP is = {hp}");
+                        Console.WriteLine($"Your HP is = {currenthp}");
                         Console.ReadKey();
                         Console.Clear();
 
                     }
-                    Console.WriteLine("You defeated the gromp, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to fight the FINAL BOSS");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the gromp, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to fight the finall boss");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The gromp got you. Game over");
+                        Environment.Exit(0);
+                    }
                 }
                 else if (grompatsp == atsp)
                 {
                     //te at purvi
-                    while (hp > 0 && grompatsp > 0)
+                    bool proverkaJivot = false;
+                    while (currenthp >= 0 && grompatsp >= 0)
                     {
-                        bool proverkaJivot = false;
-                        hp -= (grompdmg - def);
+                        currenthp -= (grompdmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"You got spitted by the gromp and took {grompdmg - def} DMG");
+                            Console.WriteLine($"Your HP is : {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"You got spitted by the gromp and took {grompdmg - def} DMG");
-                        Console.WriteLine($"Your HP is = {hp}");
+                        Console.WriteLine($"Your HP is = {currenthp}");
                         Console.ReadKey();
                         Console.Clear();
                         // tuka slagame visual modelite
@@ -969,7 +1216,7 @@
                         if (gromphp < 0)
                         {
                             gromphp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - grompdef} DMG");
                             Console.WriteLine($"gromp HP is now = {gromphp}");
                             break;
@@ -979,20 +1226,37 @@
                         Console.ReadKey();
                         Console.WriteLine();
                     }
-                    Console.WriteLine("You defeated the gromp, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to fight the FINAL BOSS");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the gromp, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to fight the finall boss");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The gromp got you. Game over");
+                        Environment.Exit(0);
+                    }
                 }
                 else
                 {
                     //te at
-                    while (hp > 0 && grompatsp > 0)
+                    bool proverkaJivot = false;
+                    while (currenthp >= 0 && grompatsp >= 0)
                     {
-                        bool proverkaJivot = false;
-                        hp -= (grompdmg - def);
+                        currenthp -= (grompdmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"You got spitted by the gromp and took {grompdmg - def} DMG");
+                            Console.WriteLine($"Your HP is : {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"You got spitted by the gromp and took {grompdmg - def} DMG");
-                        Console.WriteLine($"Your HP is = {hp}");
+                        Console.WriteLine($"Your HP is = {currenthp}");
                         Console.ReadKey();
                         Console.Clear();
                         // tuka slagame visual modelite
@@ -1001,7 +1265,7 @@
                         if (gromphp < 0)
                         {
                             gromphp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - grompdef} DMG");
                             Console.WriteLine($"gromp HP is now = {gromphp}");
                             break;
@@ -1011,25 +1275,34 @@
                         Console.ReadKey();
                         Console.WriteLine();
                     }
-                    Console.WriteLine("You defeated the gromp, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to fight the FINAL BOSS");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the gromp, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to fight the finall boss");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The gromp got you. Game over");
+                        Environment.Exit(0);
+                    }
                 }
             }
             else if (polq == true)
             {
                 if (earthgolematsp < atsp)
                 {
+                    bool proverkaJivot = false;
                     //weat1st
-                    while (hp > 0 && earthgolemhp > 0)
+                    while (currenthp >= 0 && earthgolemhp >= 0)
                     {
-                        bool proverkaJivot = false;
                         earthgolemhp -= (dmg - earthgolemdef);
                         if (earthgolemhp < 0)
                         {
                             earthgolemhp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - earthgolemdef} DMG");
                             Console.WriteLine($"earthgolem HP is now = {earthgolemhp}");
                             break;
@@ -1040,27 +1313,52 @@
                         Console.WriteLine();
                         // tuka slagame visual modelite
 
-                        hp -= (earthgolemdmg - def);
+                        currenthp -= (earthgolemdmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"You got hit by a rock and took {earthgolemdmg - def} DMG");
+                            Console.WriteLine($"Your HP is : {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"You got hit by a rock and took {earthgolemdmg - def} DMG");
-                        Console.WriteLine($"Your HP is = {hp}");
+                        Console.WriteLine($"Your HP is = {currenthp}");
                         Console.ReadKey();
                         Console.Clear();
 
                     }
-                    Console.WriteLine("You defeated the earthgolem, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to fight the FINAL BOSS");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the earhgolem, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to fight the final boss");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The earthgolem got you. Game over");
+                        Environment.Exit(0);
+                    }
                 }
                 else if (earthgolematsp == atsp)
                 {
                     //te at purvi
-                    while (hp > 0 && earthgolemhp > 0)
+                    bool proverkaJivot = false;
+                    while (currenthp >= 0 && earthgolemhp >= 0)
                     {
-                        bool proverkaJivot = false;
-                        hp -= (earthgolemdmg - def);
+                        currenthp -= (earthgolemdmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"You got hit by a rock and took {earthgolemdmg - def} DMG");
+                            Console.WriteLine($"Your HP is : {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"You got hit by a rock and took {earthgolemdmg - def} DMG");
-                        Console.WriteLine($"Your HP is = {hp}");
+                        Console.WriteLine($"Your HP is = {currenthp}");
                         Console.ReadKey();
                         Console.Clear();
                         // tuka slagame visual modelite
@@ -1069,7 +1367,7 @@
                         if (earthgolemhp < 0)
                         {
                             earthgolemhp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - earthgolemdef} DMG");
                             Console.WriteLine($"earthgolem HP is now = {earthgolemhp}");
                             break;
@@ -1079,20 +1377,37 @@
                         Console.ReadKey();
                         Console.WriteLine();
                     }
-                    Console.WriteLine("You defeated the earthgolem, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to fight the FINAL BOSS");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the earhgolem, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to fight the final boss");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The earthgolem got you. Game over");
+                        Environment.Exit(0);
+                    }
                 }
                 else
                 {
                     //te at
-                    while (hp > 0 && earthgolemhp > 0)
+                    bool proverkaJivot = false;
+                    while (currenthp >= 0 && earthgolemhp >= 0)
                     {
-                        bool proverkaJivot = false;
-                        hp -= (earthgolemdmg - def);
+                        currenthp -= (earthgolemdmg - def);
+                        if (currenthp < 0)
+                        {
+                            currenthp = 0;
+                            proverkaJivot = true;
+                            Console.WriteLine($"You got hit by a rock and took {earthgolemdmg - def} DMG");
+                            Console.WriteLine($"Your HP is : {currenthp}");
+                            break;
+                        }
                         Console.WriteLine($"You got hit by a rock and took {earthgolemdmg - def} DMG");
-                        Console.WriteLine($"Your HP is = {hp}");
+                        Console.WriteLine($"Your HP is = {currenthp}");
                         Console.ReadKey();
                         Console.Clear();
                         // tuka slagame visual modelite
@@ -1101,7 +1416,7 @@
                         if (earthgolemhp < 0)
                         {
                             earthgolemhp = 0;
-                            proverkaJivot = true;
+                            proverkaJivot = false;
                             Console.WriteLine($"You attacked and dealt {dmg - earthgolemdef} DMG");
                             Console.WriteLine($"earthgolem HP is now = {earthgolemhp}");
                             break;
@@ -1111,12 +1426,372 @@
                         Console.ReadKey();
                         Console.WriteLine();
                     }
-                    Console.WriteLine("You defeated the earthgolem, Congratulations!");
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any button to fight the FINAL BOSS");
-                    Console.ReadKey();
+                    if (proverkaJivot == false)
+                    {
+                        Console.WriteLine("You defeated the earhgolem, Congratulations!");
+                        Console.WriteLine("");
+                        Buffs(hp, ref currenthp, ref dmg, ref def, ref atsp);
+                        Console.WriteLine("Press any button to fight the final boss");
+                        Console.ReadKey();
+                    }
+                    else if (proverkaJivot)
+                    {
+                        Console.WriteLine("The earthgolem got you. Game over");
+                        Environment.Exit(0);
+                    }
                 }
             }
+        }
+
+
+        //boss fights//
+
+        static void Baubau(int baubauhp, int baubaudmg, int baubaudatsp, int baubauddef, ref int currenthp, ref int dmg, ref int atsp,ref int def, int hp)
+        {
+            Console.WriteLine($"Tova e finalniqt bos BauBau !!!∙Ї╒╘ . Kogato si gotov da se biesh s nego, natisni nqkoi buton.(bez power btn)");
+            Console.ReadKey();
+            Console.Clear();
+            if (baubaudatsp < atsp)
+            {
+                //weat1st
+                bool proverkaJivot = false;
+                while (currenthp >=0 && baubauhp >= 0)
+                {
+                    
+                    baubauhp -= (dmg - baubauddef);
+                    if (baubauhp < 0)
+                    {
+                        baubauhp = 0;
+                        proverkaJivot = false;
+                        Console.WriteLine($"You attacked and dealt {dmg - baubauddef} DMG");
+                        Console.WriteLine($"Baubau HP is now = {baubauhp}");
+                        break;
+                    }
+                    Console.WriteLine($"You attacked and dealt {dmg - baubauddef} DMG");
+                    Console.WriteLine($"Baubau HP = {baubauhp}");
+                    Console.ReadKey();
+                    Console.WriteLine();
+                    // tuka slagame visual modelite
+
+                    currenthp -= (baubaudmg - def);
+                    if (currenthp < 0)
+                    {
+                        currenthp = 0;
+                        proverkaJivot = true;
+                        Console.WriteLine($"You got hit by Baubau and took {baubaudmg - def} DMG");
+                        Console.WriteLine($"Your HP is : {currenthp}");
+                        break;
+                    }
+                    Console.WriteLine($"You got hit by Baubau and took {baubaudmg - def} DMG");
+                    Console.WriteLine($"Your HP is = {currenthp}");
+                    Console.ReadKey();
+                    Console.Clear();
+
+                }
+                if (proverkaJivot == false)
+                {
+                    Console.WriteLine("You defeated the BAUBAU, Congratulations!");
+                    Console.WriteLine("");
+                    Console.WriteLine("Press any button to end the game");
+                    Console.ReadKey();
+                }
+                else if (proverkaJivot)
+                {
+                    Console.WriteLine("The BAUBAU got you. Game over");
+                    Environment.Exit(0);
+                }
+            }
+            else if (baubaudatsp == atsp)
+            {
+                //te at purvi
+                bool proverkaJivot = false;
+                while (currenthp >= 0 && baubauhp >= 0)
+                {
+                    currenthp -= (baubaudmg - def);
+                    if (currenthp < 0)
+                    {
+                        currenthp = 0;
+                        proverkaJivot = true;
+                        Console.WriteLine($"You got hit by Baubau and took {baubaudmg - def} DMG");
+                        Console.WriteLine($"Your HP is : {currenthp}");
+                        break;
+                    }
+                    Console.WriteLine($"You got hit by Baubau and took {baubaudmg - def} DMG");
+                    Console.WriteLine($"Your HP is = {currenthp}");
+                    Console.ReadKey();
+                    Console.Clear();
+                    // tuka slagame visual modelite
+
+                    baubauhp -= (dmg - baubauddef);
+                    if (baubauhp < 0)
+                    {
+                        baubauhp = 0;
+                        proverkaJivot = false;
+                        Console.WriteLine($"You attacked and dealt {dmg - baubauddef} DMG");
+                        Console.WriteLine($"Baubau HP is now = {baubauhp}");
+                        break;
+                    }
+                    Console.WriteLine($"You attacked and dealt {dmg - baubauddef} DMG");
+                    Console.WriteLine($"Baubau HP = {baubauhp}");
+                    Console.ReadKey();
+                    Console.WriteLine();
+                }
+                if (proverkaJivot == false)
+                {
+                    Console.WriteLine("You defeated the BAUBAU, Congratulations!");
+                    Console.WriteLine("");
+                    Console.WriteLine("Press any button to end the game");
+                    Console.ReadKey();
+                }
+                else if (proverkaJivot)
+                {
+                    Console.WriteLine("The BAUBAU got you. Game over");
+                    Environment.Exit(0);
+                }
+            }
+            else
+            {
+                //te at
+                bool proverkaJivot = false;
+                while (currenthp >= 0 && baubauhp >= 0)
+                {
+                    currenthp -= (baubaudmg - def);
+                    if (currenthp < 0)
+                    {
+                        currenthp = 0;
+                        proverkaJivot = true;
+                        Console.WriteLine($"You got hit by Baubau and took {baubaudmg - def} DMG");
+                        Console.WriteLine($"Your HP is : {currenthp}");
+                        break;
+                    }
+                    Console.WriteLine($"You got hit by Baubau and took {baubaudmg - def} DMG");
+                    Console.WriteLine($"Your HP is = {currenthp}");
+                    Console.ReadKey();
+                    Console.Clear();
+                    // tuka slagame visual modelite
+
+                    baubauhp -= (dmg - baubauddef);
+                    if (baubauhp < 0)
+                    {
+                        baubauhp = 0;
+                        proverkaJivot = false;
+                        Console.WriteLine($"You attacked and dealt {dmg - baubauddef} DMG");
+                        Console.WriteLine($"Baubau HP is now = {baubauhp}");
+                        break;
+                    }
+                    Console.WriteLine($"You attacked and dealt {dmg - baubauddef} DMG");
+                    Console.WriteLine($"Baubau HP = {baubauhp}");
+                    Console.ReadKey();
+                    Console.WriteLine();
+                }
+                if (proverkaJivot == false)
+                {
+                    Console.WriteLine("You defeated the BAUBAU, Congratulations!");
+                    Console.WriteLine("");
+                    Console.WriteLine("Press any button to end the game");
+                    Console.ReadKey();
+                }
+                else if (proverkaJivot)
+                {
+                    Console.WriteLine("The BAUBAU got you. Game over");
+                    Environment.Exit(0);
+                }
+            }
+        }
+
+        static void BlobGlob(int blobglobhp, int blobglobdmg, int blobglobatsp, int blobglobdef, ref int currenthp,ref int dmg, ref int atsp,ref int def, int hp)
+        {
+            Console.WriteLine($"Tova e finalniqt bos BLOBGLOB !!!∙Ї╒╘ . Kogato si gotov da se biesh s nego, natisni nqkoi buton.(bez power btn)");
+            Console.ReadKey();
+            Console.Clear();
+            if (blobglobatsp < atsp)
+            {
+                //weat1st
+                bool proverkaJivot = false;
+                while (currenthp >= 0 && blobglobhp >= 0)
+                {
+                    blobglobhp -= (dmg - blobglobdef);
+                    if (blobglobhp < 0)
+                    {
+                        blobglobhp = 0;
+                        proverkaJivot = false;
+                        Console.WriteLine($"You attacked and dealt {dmg - blobglobdef} DMG");
+                        Console.WriteLine($"The BlobGlob HP is now = {blobglobhp}");
+                        break;
+                    }
+                    Console.WriteLine($"You attacked and dealt {dmg - blobglobdef} DMG");
+                    Console.WriteLine($"The BlobGlob HP = {blobglobhp}");
+                    Console.ReadKey();
+                    Console.WriteLine();
+                    // tuka slagame visual modelite
+
+                    currenthp -= (blobglobdmg - def);
+                    if (currenthp < 0)
+                    {
+                        currenthp = 0;
+                        proverkaJivot = true;
+                        Console.WriteLine($"You got hit by The BlobGlob and took {blobglobdmg - def} DMG");
+                        Console.WriteLine($"Your HP is : {currenthp}");
+                        break;
+                    }
+                    Console.WriteLine($"You got hit by The BlobGlob and took {blobglobdmg - def} DMG");
+                    Console.WriteLine($"Your HP is = {currenthp}");
+                    Console.ReadKey();
+                    Console.Clear();
+
+                }
+                if (proverkaJivot == false)
+                {
+                    Console.WriteLine("You defeated the BlobGlob, Congratulations!");
+                    Console.WriteLine("");
+                    Console.WriteLine("Press any button to end the game");
+                    Console.ReadKey();
+                }
+                else if (proverkaJivot)
+                {
+                    Console.WriteLine("The BlobGlob got you. Game over");
+                    Environment.Exit(0);
+                }
+            }
+            else if (blobglobatsp == atsp)
+            {
+                //te at purvi
+                bool proverkaJivot = false;
+                while (currenthp >= 0 && blobglobhp >= 0)
+                {
+                    currenthp -= (blobglobdmg - def);
+                    if (currenthp < 0)
+                    {
+                        currenthp = 0;
+                        proverkaJivot = true;
+                        Console.WriteLine($"You got hit by The BlobGlob and took {blobglobdmg - def} DMG");
+                        Console.WriteLine($"Your HP is : {currenthp}");
+                        break;
+                    }
+                    Console.WriteLine($"You got hit by The BlobGlob and took {blobglobdmg - def} DMG");
+                    Console.WriteLine($"Your HP is = {currenthp}");
+                    Console.ReadKey();
+                    Console.Clear();
+                    // tuka slagame visual modelite
+
+                    blobglobhp -= (dmg - blobglobdef);
+                    if (blobglobhp < 0)
+                    {
+                        blobglobhp = 0;
+                        proverkaJivot = false;
+                        Console.WriteLine($"You attacked and dealt {dmg - blobglobdef} DMG");
+                        Console.WriteLine($"The BlobGlob HP is now = {blobglobhp}");
+                        break;
+                    }
+                    Console.WriteLine($"You attacked and dealt {dmg - blobglobdef} DMG");
+                    Console.WriteLine($"The BlobGlob HP = {blobglobhp}");
+                    Console.ReadKey();
+                    Console.WriteLine();
+                }
+                if (proverkaJivot == false)
+                {
+                    Console.WriteLine("You defeated the BlobGlob, Congratulations!");
+                    Console.WriteLine("");
+                    Console.WriteLine("Press any button to end the game");
+                    Console.ReadKey();
+                }
+                else if (proverkaJivot)
+                {
+                    Console.WriteLine("The BlobGlob got you. Game over");
+                    Environment.Exit(0);
+                }
+            }
+            else
+            {
+                //te at
+                bool proverkaJivot = false;
+                while (currenthp >= 0 && blobglobhp >= 0)
+                {
+                    currenthp -= (blobglobdmg - def);
+                    if (currenthp < 0)
+                    {
+                        currenthp = 0;
+                        proverkaJivot = true;
+                        Console.WriteLine($"You got hit by The BlobGlob and took {blobglobdmg - def} DMG");
+                        Console.WriteLine($"Your HP is : {currenthp}");
+                        break;
+                    }
+                    Console.WriteLine($"You got hit by The BlobGlob and took {blobglobdmg - def} DMG");
+                    Console.WriteLine($"Your HP is = {currenthp}");
+                    Console.ReadKey();
+                    Console.Clear();
+                    // tuka slagame visual modelite
+
+                    blobglobhp -= (dmg - blobglobdef);
+                    if (blobglobhp < 0)
+                    {
+                        blobglobhp = 0;
+                        proverkaJivot = false;
+                        Console.WriteLine($"You attacked and dealt {dmg - blobglobdef} DMG");
+                        Console.WriteLine($"The BlobGlob HP is now = {blobglobhp}");
+                        break;
+                    }
+                    Console.WriteLine($"You attacked and dealt {dmg - blobglobdef} DMG");
+                    Console.WriteLine($"The BlobGlob HP = {blobglobhp}");
+                    Console.ReadKey();
+                    Console.WriteLine();
+                }
+                if (proverkaJivot == false)
+                {
+                    Console.WriteLine("You defeated the BlobGlob, Congratulations!");
+                    Console.WriteLine("");
+                    Console.WriteLine("Press any button to end the game");
+                    Console.ReadKey();
+                }
+                else if (proverkaJivot)
+                {
+                    Console.WriteLine("The BlobGlob got you. Game over");
+                    Environment.Exit(0);
+                }
+            }
+
+        }
+
+        //buffs
+        static void Buffs(int hp, ref int currenthp, ref int dmg, ref int def, ref int atsp )
+        {
+            Random buff = new Random();
+            int randomValue1 = buff.Next(0, 99);
+            if (randomValue1 <27)
+            {
+                currenthp += 215;
+                if (currenthp > hp) { currenthp = hp; }
+                Console.WriteLine("You received 215 points of hp. Press any button to continue");
+                Console.ReadKey();
+            }
+            else if (randomValue1 < 47)
+            {
+                atsp += (atsp*33)/100;
+                Console.WriteLine("You received atsp buff. Press any button to continue");
+                Console.ReadKey();
+            }
+            else if (randomValue1 < 67)
+            {
+                def += (def * 25) / 100;
+                Console.WriteLine("You received def buff. Press any button to continue");
+                Console.ReadKey();
+            }
+            else if (randomValue1 < 87)
+            {
+                dmg += (dmg * 10) / 100;
+                Console.WriteLine("You received dmg buff. Press any button to continue");
+                Console.ReadKey();
+            }
+            else
+            {
+                currenthp += 215;
+                atsp += (atsp * 33) / 100;
+                def += (def * 25) / 100;
+                dmg += (dmg * 10) / 100;
+                Console.WriteLine("Congratulations, You received the rare buff. Now all of your stats are buffed. Press any button to continue");
+                Console.ReadKey();
+            }
+            
         }
 
         //swords//
@@ -1267,7 +1942,11 @@ da slojim ikoni na mech/luk/berserk/bradva/kopie
 | |              | || |              | || |              | || |              | || |              | |
 | '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |
  '----------------'  '----------------'  '----------------'  '----------------'  '----------------'
- 
+ /
+buff 
+20% dmg
+max heal
+
  
  br =0
 sleep 1
@@ -1306,4 +1985,22 @@ penis
 penis
 penis
 penispenis
+penis
+penis
+penis
+penis
+penis
+penis
+penis
+penis
+penis
+penis
+penis
+penis
+
+Lumberchak - nai mn krit 33%  
+archer - 1 na 5
+spearman - 1 na 4
+sworsman - 1 na 4
+
 */

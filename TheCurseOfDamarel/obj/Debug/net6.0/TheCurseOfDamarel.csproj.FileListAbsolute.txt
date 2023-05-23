@@ -13,3 +13,18 @@ C:\Users\User\Downloads\TheCurseOfDamarel\TheCurseOfDamarel\obj\Debug\net6.0\ref
 C:\Users\User\Downloads\TheCurseOfDamarel\TheCurseOfDamarel\obj\Debug\net6.0\TheCurseOfDamarel.pdb
 C:\Users\User\Downloads\TheCurseOfDamarel\TheCurseOfDamarel\obj\Debug\net6.0\TheCurseOfDamarel.genruntimeconfig.cache
 C:\Users\User\Downloads\TheCurseOfDamarel\TheCurseOfDamarel\obj\Debug\net6.0\ref\TheCurseOfDamarel.dll
+C:\Users\User\Desktop\New folder (4)\TheCurseOfDamarel\TheCurseOfDamarel\bin\Debug\net6.0\TheCurseOfDamarel.exe
+C:\Users\User\Desktop\New folder (4)\TheCurseOfDamarel\TheCurseOfDamarel\bin\Debug\net6.0\TheCurseOfDamarel.deps.json
+C:\Users\User\Desktop\New folder (4)\TheCurseOfDamarel\TheCurseOfDamarel\bin\Debug\net6.0\TheCurseOfDamarel.runtimeconfig.json
+C:\Users\User\Desktop\New folder (4)\TheCurseOfDamarel\TheCurseOfDamarel\bin\Debug\net6.0\TheCurseOfDamarel.dll
+C:\Users\User\Desktop\New folder (4)\TheCurseOfDamarel\TheCurseOfDamarel\bin\Debug\net6.0\TheCurseOfDamarel.pdb
+C:\Users\User\Desktop\New folder (4)\TheCurseOfDamarel\TheCurseOfDamarel\obj\Debug\net6.0\TheCurseOfDamarel.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\New folder (4)\TheCurseOfDamarel\TheCurseOfDamarel\obj\Debug\net6.0\TheCurseOfDamarel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\New folder (4)\TheCurseOfDamarel\TheCurseOfDamarel\obj\Debug\net6.0\TheCurseOfDamarel.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\New folder (4)\TheCurseOfDamarel\TheCurseOfDamarel\obj\Debug\net6.0\TheCurseOfDamarel.AssemblyInfo.cs
+C:\Users\User\Desktop\New folder (4)\TheCurseOfDamarel\TheCurseOfDamarel\obj\Debug\net6.0\TheCurseOfDamarel.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\New folder (4)\TheCurseOfDamarel\TheCurseOfDamarel\obj\Debug\net6.0\TheCurseOfDamarel.dll
+C:\Users\User\Desktop\New folder (4)\TheCurseOfDamarel\TheCurseOfDamarel\obj\Debug\net6.0\refint\TheCurseOfDamarel.dll
+C:\Users\User\Desktop\New folder (4)\TheCurseOfDamarel\TheCurseOfDamarel\obj\Debug\net6.0\TheCurseOfDamarel.pdb
+C:\Users\User\Desktop\New folder (4)\TheCurseOfDamarel\TheCurseOfDamarel\obj\Debug\net6.0\TheCurseOfDamarel.genruntimeconfig.cache
+C:\Users\User\Desktop\New folder (4)\TheCurseOfDamarel\TheCurseOfDamarel\obj\Debug\net6.0\ref\TheCurseOfDamarel.dll
